@@ -1,10 +1,12 @@
 import express from 'express';  
 import connect from './mongo/connect.js';
-import airport_router from './Router/airport_router.js';   
-import { companyModel, employeeModel, ticketsModel } from './mongo/models.js';
-
+import airport_router from './router/airport_router.js';
+import transport_router   from './router/transporter_router.js';
+import company_router from './router/company_router.js';
+import ticket_router from './router/ticket_router.js';
 
 const app = express();
+
 app.use(express.json());
 
 app.get('/', async (req, res) => {   
@@ -21,10 +23,10 @@ app.get('/', async (req, res) => {
 
 //routing:
 app.use('/airports', airport_router);
-// app.use('/transporters',transport_router)
-app.use('/companies',companyModel);
-app.use('/employees',employeeModel);
-app.use('/tickets',ticketsModel);
+app.use('/transporters',transport_router)
+app.use('/companies',company_router);
+// app.use('/employees',employeeModel);
+app.use('/tickets',ticket_router);
 
 //server port:
 app.listen(5000, () => {

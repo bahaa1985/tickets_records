@@ -2,8 +2,6 @@ import express from 'express';
 import { createAirport,deleteAirport,getAirportById,getAirports } from '../mongo/api/airport.js';
 import bodyParser from 'body-parser';
 
-const app=express();
-
 const airport_router = express.Router();
 
 airport_router.get('/', async (req, res) => {
@@ -40,8 +38,9 @@ airport_router.post('/',bodyParser.urlencoded({extended:false}), async (req, res
 
 airport_router.put('/:id', async (req,res)=>{
     const id=req.params.id;
+    const airport=req.body;
     try{
-        const airport=await updateAirport(id,req.body);
+        const airport=await updateAirport(id,airport);
         if(airport){
             res.status(200).send(airport);
         }
