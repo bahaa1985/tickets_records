@@ -20,6 +20,26 @@ export const Transporter = () => {
                     <li key={transporter.id} contentEditable={true}>{transporter.name}</li>
                 ))}
             </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>الاسم</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        transporters.map((index,transporter)=>{
+                            return(
+                                <tr key={index}>
+                                    <td>{transporter.logo}</td>
+                                    <td>{transporter.name}</td>                                    
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
         </div>
         
     )

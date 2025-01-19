@@ -15,11 +15,24 @@ export const Airport = () => {
     return(
         <div>
             <h1>AirPorts</h1>
-            <ul>
-                {airports.map(airport => (
-                    <li key={airport.id} contentEditable={true}>{airport.name}</li>
-                ))}
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>المدينة</th>
+                        <th>كود</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        airports.map((airport,index) => (
+                            <tr key={index} contentEditable={true}>
+                                <td>{airport.name}</td>
+                                <td>{airport.code}</td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
         </div>
         
     )
