@@ -21,6 +21,7 @@ app.get('/', async (req, res) => {
 
 //routing:
 app.use('/airports', airport_router);
+// app.use('/transporters',transport_router)
 app.use('/companies',companyModel);
 app.use('/employees',employeeModel);
 app.use('/tickets',ticketsModel);
