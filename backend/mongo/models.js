@@ -19,7 +19,7 @@ export function airportModel(){
 }
 
 export function companyModel(){
-    const CompanySchema=new mongoose.Schema({name:String,mobile:String,logo:String});
+    const CompanySchema=new mongoose.Schema({name:String,mobile:String,email:String,logo:String});
     const companies=mongoose.models.companies || mongoose.model('companies',CompanySchema);
     return companies;
 }
