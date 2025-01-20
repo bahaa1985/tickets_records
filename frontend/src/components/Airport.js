@@ -4,12 +4,12 @@ export const Airport = () => {
     const [airports, setAirports] = useState([]);
 
     useEffect(()=>{
-        const fetchTransporters = async () => {
+        const fetchAirports = async () => {
             const res = await fetch('/airports');
             const data = await res.json();
             setAirports(data);
         }
-        fetchTransporters();
+        fetchAirports();
     },[])
     
     return(
