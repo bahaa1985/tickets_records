@@ -24,8 +24,32 @@ export const Ticket = () => {
                 <input type="text" placeholder="اسم الراكب" />                
                 <input type="text" placeholder="رقم الموبايل" />
                 <input type="date" placeholder="تاريخ الحجز" />
-                <input type="date" placeholder="تاريخ المغادرة" />
-                {flightOneWay ? null : <input type="date" placeholder="تاريخ العودة" />}                
+                <div>
+                    <input type="date" placeholder="تاريخ المغادرة" />
+                    <select>
+                        <option>من إلى</option>
+                    </select>   
+                    <select>
+                        <option></option>
+                    </select>   
+                </div>
+               <div>
+
+               </div>
+                {
+                    flightOneWay ? null : 
+                    <div>
+                    <input type="date" placeholder="تاريخ العودة" />
+                    <select>
+                        <option>من</option>
+                    </select>   
+                    <select>
+                        <option>إلى</option>
+                    </select>   
+                    </div>                    
+                } 
+                
+                     
             </form>
             {/* all tickets: */}
             <table>  
