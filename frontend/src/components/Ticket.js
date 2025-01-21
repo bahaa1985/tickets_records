@@ -27,10 +27,10 @@ export const Ticket = () => {
                 <div>
                     <input type="date" placeholder="تاريخ المغادرة" />
                     <select>
-                        <option>من إلى</option>
+                        <option>من</option>
                     </select>   
                     <select>
-                        <option></option>
+                        <option>إلى</option>
                     </select>   
                 </div>
                <div>
