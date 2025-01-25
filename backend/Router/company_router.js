@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import {companyModel} from "../mongo/models.js";
 import express from 'express';
+import bodyParser from 'body-parser';
 import { createCompany, deleteCompany, getCompanyById, updateCompany } from "../mongo/api/company.js";
 
 const company_router=express.Router();

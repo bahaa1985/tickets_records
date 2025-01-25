@@ -1,4 +1,4 @@
-import { transporterModel } from "../models";
+import { transporterModel } from "../models.js";
 import mongoose from "mongoose";
 
 export async function getTransporters() {

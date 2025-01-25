@@ -1,4 +1,4 @@
-import { companyModel } from "../models";
+import { companyModel } from "../models.js";
 import mongoose from "mongoose";
 
 export async function getCompanies() {  

@@ -1,4 +1,4 @@
-import { employeeModel } from "../models";
+import { employeeModel } from "../models.js";
 import mongoose from "mongoose";
 
 export async function getEmployees() {

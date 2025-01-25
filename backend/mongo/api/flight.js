@@ -1,4 +1,4 @@
-import { flightModel } from "../models";
+import { flightModel } from "../models.js";
 import mongoose from "mongoose";
 
 export async function getFlights() {

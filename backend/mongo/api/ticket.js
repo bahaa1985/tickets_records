@@ -1,4 +1,4 @@
-import { ticketsModel } from "../models";
+import { ticketsModel } from "../models.js";
 import mongoose from "mongoose";
 
 export async function getTickets() {

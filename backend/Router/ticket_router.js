@@ -1,6 +1,6 @@
 import mongoose from 'express';
-import { ticketsModel } from '../mongo/models';
-import { getTickets, getTicketById, createTicket, updateTicket, deleteTicket } from '../mongo/api/ticket';
+import { ticketsModel } from '../mongo/models.js';
+import { getTickets, getTicketById, createTicket, updateTicket, deleteTicket } from '../mongo/api/ticket.js';
 import express from 'express';
 
 const ticket_router= express.Router();
