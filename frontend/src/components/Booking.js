@@ -5,8 +5,8 @@ export const Booking = () => {
     const [tickets, setTickets] = useState([]);
     const [fromAirports,setFromAirports] = useState([]);
     const [toAirports,setToAirports] = useState([]);
-    const [selectedFromAirport, setSelectedFromAirport] = useState();
-    const [selectedToAirport, setSelectedToAirport] = useState();
+    const [selectedFromAirport, setSelectedFromAirport] = useState("");
+    const [selectedToAirport, setSelectedToAirport] = useState("");
     const [passengersFields, setPassengersFields] = useState([{ name: "", mobile: "" }]);
     const [flightType, setFlightType] = useState("one-way");
     const [selectedAirports, setSelectedAirports] = useState([]);
@@ -36,13 +36,14 @@ export const Booking = () => {
         setFlightType(event.target.value);
     };
     
-    const handleAirportSelection = (event) => {
-        console.log("event",event.target.value);
-        
+    const handleToAirport = (event) => {
+        setSelectedFromAirport(event.target.value)
+        // console.log("event:",selectedFromAirport);
         const value = event.target.value;
+        // toAirports=fromAirports.filter(airport=>airport.city !== value)
         setToAirports(
-          toAirports.filter(airport=>airport.city !== value)
-        );
+          fromAirports.filter(airport=>airport.name !== value)
+        )
     };
 
     return(
@@ -91,14 +92,18 @@ export const Booking = () => {
                 {/* from and to airports */}
                 <div>
                     <label>From:
-                        <select onChange={()=>[setSelectedFromAirport,handleAirportSelection]} value={selectedFromAirport}>
-                            {fromAirports.map((airport,index)=>(
-                                <option key={index} value={airport.name}>{airport.name}</option>
-                            ))}
+                        <select 
+                         onChange={(e)=>handleToAirport(e)}
+                         value={selectedFromAirport}>
+                            {
+                                fromAirports.map((airport,index)=>(
+                                    <option key={index} value={airport.name}>{airport.name}</option>
+                                ))
+                            }
                         </select>
                     </label>
                     <label>To:
-                        <select onChange={()=>setSelectedToAirport} value={selectedToAirport}>
+                        <select onChange={(e)=>setSelectedToAirport(e.target.value)} value={selectedToAirport}>
                             {toAirports.map((airport,index)=>(
                                 <option key={index} value={airport.code}>{airport.name}</option>
                             ))}
@@ -118,7 +123,7 @@ export const Booking = () => {
                     }                                       
                 </div>
                 <input type="button" onClick={()=>handleAddPassengers()} value="إضافة راكب"></input>
-                <input type="button" onClick={()=>console.log("pf",...passengersFields)} value="rtyyy"></input>
+                <input type="button" onClick={()=>console.log("pf",selectedFromAirport,selectedToAirport)} value="rtyyy"></input>
                 
                <div>
             </div>
