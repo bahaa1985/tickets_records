@@ -6,7 +6,7 @@ const transporter_router = express.Router();
 
 transporter_router.get('/', async (req, res) => {
     try {
-        const transporters = await gettransporter();
+        const transporters = await getTransporters();
         res.status(200).send(transporters);
     } catch (error) {
         res.status(500).send({'Getting transporters error :':error.message});

@@ -10,26 +10,40 @@ export const Booking = () => {
     const [passengersFields, setPassengersFields] = useState([{ name: "", mobile: "" }]);
     const [flightType, setFlightType] = useState("one-way");
     const [selectedAirports, setSelectedAirports] = useState([]);
+    const [selectedTransporter,setSelectedTransporter]=useState("");
+    const [transporters,setTransporters]=useState([]);
+    const [companies,setCompanies]=useState([]);
 
     useEffect(()=>{
         const fetchAirports = async () => {
-            const res = await fetch('/airports');
-            const data = await res.json();
+            const res = await fetch('/airports');                    
+            const data = await res.json();                    
             setFromAirports(data);
-            setToAirports(data);
+            setToAirports(data);                      
+
         }
+        const fetchTransporters = async () => {
+            const res = await fetch('/transporters');
+            const data = await res.json();
+            console.log(data);
+            
+            setTransporters(data);
+        }
+
+        const fetchCompanies = async () => {
+            const res = await fetch('/companies');
+            const data = await res.json();
+            setCompanies(data);
+        }
+
         fetchAirports();
-        // const fetchTickets = async () => {
-        //     const res = await fetch('/tickets');
-        //     const data = await res.json();
-        //     setTickets(data);
-        // }
-        // fetchTickets();
+        fetchTransporters();
+        fetchCompanies();
+
     },[])
 
     function handleAddPassengers(){
         setPassengersFields([...passengersFields,{ name: "", mobile: "" }]);
-        // console.log("pf",passengersFields); 
     }
 
     const handleFlightTypeChange = (event) => {
@@ -48,8 +62,7 @@ export const Booking = () => {
 
     return(
         <div>
-            <h1>Tickets</h1>
-            {/* new ticket: */}
+            <h1>Booking</h1>    
             <form>  
                 {/* Choose flight type */}
                 <div style={{ marginBottom: "20px" }}>
@@ -122,10 +135,35 @@ export const Booking = () => {
                         })          
                     }                                       
                 </div>
-                <input type="button" onClick={()=>handleAddPassengers()} value="إضافة راكب"></input>
-                <input type="button" onClick={()=>console.log("pf",selectedFromAirport,selectedToAirport)} value="rtyyy"></input>
+                <div>
+                    <input type="button" onClick={()=>handleAddPassengers()} value="إضافة راكب"></input>
+                    <input type="button" onClick={()=>console.log("pf",selectedFromAirport,selectedToAirport)} value="rtyyy"></input>
+                </div>
+                {/* Aviation: */}
+                <div>
+                    <label>
+                        شركة الطيران
+                        <select onChange={(e)=>{setSelectedTransporter(e.target.value);console.log(selectedTransporter)}
+                        } value={selectedTransporter}>
+                            {
+                                transporters.map((transporter,index)=>{
+                                    return(                                                                       
+                                        <option key={index} value={transporter._id}>                                           
+                                           {transporter.name}                                           
+                                        </option>                                     
+                                    )
+                                })
+                            }
+                        </select>
+                        <img src={transporters.filter((transporter=>transporter._id===selectedTransporter)).image} alt="" />
+                    </label>
+                </div>
                 
                <div>
+            </div>
+            {/* Fund */}
+            <div>
+
             </div>
             </form>
 

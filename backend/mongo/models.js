@@ -32,7 +32,7 @@ export function transporterModel(){
 
 export function ticketsModel(){
     const TicketSchema=new mongoose.Schema({
-        passengers:[{passengerName:String,passengerMobile:String}],
+        passengers:mongoose.Schema.Types.Array,
         bookingDate:mongoose.Schema.Types.Date,
         departureDate:mongoose.Schema.Types.Date,
         returnDate:mongoose.Schema.Types.Date,
