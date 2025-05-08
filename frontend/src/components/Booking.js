@@ -8,7 +8,7 @@ export const Booking = () => {
     const [selectedFromAirport, setSelectedFromAirport] = useState("");
     const [selectedToAirport, setSelectedToAirport] = useState("");
     const [passengersFields, setPassengersFields] = useState([{ name: "", mobile: "" }]);
-    const [flightType, setFlightType] = useState("one-way");
+    const [flightType, setFlightType] = useState(0);
     const [selectedAirports, setSelectedAirports] = useState([]);
     const [selectedTransporter,setSelectedTransporter]=useState("");
     const [transporters,setTransporters]=useState([]);
@@ -46,14 +46,13 @@ export const Booking = () => {
         setPassengersFields([...passengersFields,{ name: "", mobile: "" }]);
     }
 
-    const handleFlightTypeChange = (event) => {
-        setFlightType(event.target.value);
+    const handleFlightTypeChange = (value) => {
+        setFlightType(value);
     };
     
-    const handleToAirport = (event) => {
-        setSelectedFromAirport(event.target.value)
+    const handleToAirport = (value) => {
+        setSelectedFromAirport(value)
         // console.log("event:",selectedFromAirport);
-        const value = event.target.value;
         // toAirports=fromAirports.filter(airport=>airport.city !== value)
         setToAirports(
           fromAirports.filter(airport=>airport.name !== value)
@@ -66,25 +65,15 @@ export const Booking = () => {
             <form>  
                 {/* Choose flight type */}
                 <div style={{ marginBottom: "20px" }}>
-                    <label>Flight Type:</label>
+                    <label>نوع الرحلة:</label>
                     <div>
                         <label style={{ marginRight: "10px" }}>
-                        <input
-                            type="radio"
-                            value="one-way"
-                            checked={flightType === "one-way"}
-                            onChange={handleFlightTypeChange}
-                        />
-                        One Way
+                        <input  type="radio" checked={flightType === 0 ? true : false}  onChange={(e)=>handleFlightTypeChange(0)}/>
+                        رحلة ذهاب
                         </label>
                         <label>
-                        <input
-                            type="radio"
-                            value="return"
-                            checked={flightType === "return"}
-                            onChange={handleFlightTypeChange}
-                        />
-                        Return
+                        <input  type="radio" checked={flightType === 1 ? true : false}  onChange={(e)=>handleFlightTypeChange(1)}/>
+                        رحلة ذهاب و عودة
                         </label>
                     </div>
                     <div>
@@ -93,7 +82,7 @@ export const Booking = () => {
                         <input type="date"></input>
                     </label>
                     {
-                        flightType === 'return' ?  
+                        flightType === 1 ?  
                         <label>
                         تاريخ العودة
                             <input type="date"></input>
@@ -136,8 +125,7 @@ export const Booking = () => {
                     }                                       
                 </div>
                 <div>
-                    <input type="button" onClick={()=>handleAddPassengers()} value="إضافة راكب"></input>
-                    <input type="button" onClick={()=>console.log("pf",selectedFromAirport,selectedToAirport)} value="rtyyy"></input>
+                    <input type="button" onClick={()=>handleAddPassengers()} value="إضافة راكب"></input>                  
                 </div>
                 {/* Aviation: */}
                 <div>

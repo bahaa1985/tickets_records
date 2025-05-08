@@ -37,8 +37,8 @@ export function ticketsModel(){
         departureDate:mongoose.Schema.Types.Date,
         returnDate:mongoose.Schema.Types.Date,
         flights:mongoose.Schema.Types.Array,
-        transporterId:String,
-        companyId:String,
+        transporterId:mongoose.Types.ObjectId,
+        companyId:mongoose.Types.ObjectId,
         price:Number,
         remain:Number,
         employeeId:String,
@@ -50,9 +50,9 @@ export function ticketsModel(){
 export function flightModel(){
     const FlightSchema=new mongoose.Schema({
         flightType:String,
-        depAirportId:String,
-        arrAirportId:String,
-        transporterId:String,
+        depAirportId:mongoose.Types.ObjectId,
+        arrAirportId:mongoose.Types.ObjectId,
+        transporterId:mongoose.Types.ObjectId,
     });
     const flights=mongoose.models.flights ||  mongoose.model('flights',FlightSchema);
     return flights;
