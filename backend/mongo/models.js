@@ -35,13 +35,16 @@ export function ticketsModel(){
         passengers:mongoose.Schema.Types.Array,
         bookingDate:mongoose.Schema.Types.Date,
         departureDate:mongoose.Schema.Types.Date,
-        returnDate:mongoose.Schema.Types.Date,
+        returnDate:mongoose.Schema.Types.Date || null,
+        // flightType: mongoose.Schema.Types.Number, // 0:one way, 1:round trip
         flights:mongoose.Schema.Types.Array,
         transporterId:mongoose.Types.ObjectId,
         companyId:mongoose.Types.ObjectId,
-        price:Number,
-        remain:Number,
-        employeeId:String,
+        price:mongoose.Schema.Types.Number,
+        salePrice:mongoose.Schema.Types.Number,
+        payed:mongoose.Schema.Types.Number,
+        remain:mongoose.Schema.Types.Number,
+        employeeId:mongoose.Types.ObjectId,
     });
     const tickets=mongoose.models.tickets ||  mongoose.model('tickets',TicketSchema);
     return tickets;
