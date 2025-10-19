@@ -4,6 +4,9 @@ import airport_router from './router/airport_router.js';
 import transport_router   from './router/transporter_router.js';
 import company_router from './router/company_router.js';
 import ticket_router from './router/ticket_router.js';
+import login_router from './router/login_router.js';
+import user_router from './router/user_router.js';
+import finance_router from './router/finance_router.js';
 
 const app = express();
 
@@ -25,8 +28,11 @@ app.get('/', async (req, res) => {
 app.use('/airports', airport_router);
 app.use('/transporters',transport_router)
 app.use('/companies',company_router);
-// app.use('/employees',employeeModel);
 app.use('/tickets',ticket_router);
+app.use('/login',login_router);
+app.use('/user',user_router);
+app.use('/finance',finance_router);
+// app.use('./flights',flight_router);
 
 //server port:
 app.listen(5000, () => {

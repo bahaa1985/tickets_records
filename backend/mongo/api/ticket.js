@@ -13,7 +13,7 @@ export async function getTicketById(id) {
 
 export async function createTicket(ticket) {
     const tickets = ticketsModel();
-    return tickets.create(ticket);
+    return tickets.insertMany(ticket);
 }
 
 export async function updateTicket(id, ticket) {

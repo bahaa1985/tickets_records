@@ -2,26 +2,28 @@ import mongoose from "mongoose";
 import {companyModel} from "../mongo/models.js";
 import express from 'express';
 import bodyParser from 'body-parser';
-import { createCompany, deleteCompany, getCompanyById, updateCompany } from "../mongo/api/company.js";
+import { getCompanies,createCompany, deleteCompany, getCompanyById, updateCompany } from "../mongo/api/company.js";
 
 const company_router=express.Router();
 
 company_router.get('/',async (req,res)=>{
     try{
-        const companies = await companyModel().find();
-        res.status(200).send(companies);
+        const companies = await getCompanies();
+        if(companies){
+            res.status(200).send(companies);
+        }
     }
     catch(error){
-        res.status(500).send("Get Companies error:",error);
+        res.status(500).send({'Get Companies error':error.message});
     }
 })
 
 company_router.get('/:id', async (req, res)=>{
     const id=req.params.id;
     try{
-        const airports=await getCompanyById(id);
-        if(airports){
-            res.status(200).send(airports);
+        const company=await getCompanyById(id);
+        if(company){
+            res.status(200).send(company);
         }
     }
     catch(error){

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 export async function getCompanies() {  
     const companies = companyModel();
-    return companies.find();
+    return companies.find({});
 }
 
 export async function getCompanyById(id) {

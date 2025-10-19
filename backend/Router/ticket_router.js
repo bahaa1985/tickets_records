@@ -30,6 +30,7 @@ ticket_router.get('/:id', async (req, res)=>{
 ticket_router.post('/',express.urlencoded({extended:false}), async (req, res) => { 
     try {
         const ticket = req.body;
+        console.log("ticket router:",ticket);        
         const newTicket = await createTicket(ticket);
         res.status(200).send(newTicket);
     } catch (error) {
@@ -39,7 +40,7 @@ ticket_router.post('/',express.urlencoded({extended:false}), async (req, res) =>
 
 ticket_router.put('/:id', async (req,res)=>{
     const id=req.params.id;
-    const ticket=req.body;
+    const ticket=req.body.ticket;
     try{
         const updatedTicket=await updateTicket(id,ticket);
         if(updatedTicket){

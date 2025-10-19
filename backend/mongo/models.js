@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-export function employeeModel(){    
-    const EmployeeSchema=new mongoose.Schema({name:String,mobile:String,userName:String,password:String});
-    const employees=mongoose.models.employees ||  mongoose.model('employees',EmployeeSchema);
-    return employees;
+export function userModel(){    
+    const userSchema=new mongoose.Schema({name:String,mobile:String,userName:String,password:String,privigile:String});
+    const users=mongoose.models.users ||  mongoose.model('users', userSchema);
+    return  users;
 }
 
 export function privilegseModel(){
@@ -33,18 +33,18 @@ export function transporterModel(){
 export function ticketsModel(){
     const TicketSchema=new mongoose.Schema({
         passengers:mongoose.Schema.Types.Array,
-        bookingDate:mongoose.Schema.Types.Date,
+        bookingDate:mongoose.Schema.Types.String,
         departureDate:mongoose.Schema.Types.Date,
         returnDate:mongoose.Schema.Types.Date || null,
-        // flightType: mongoose.Schema.Types.Number, // 0:one way, 1:round trip
         flights:mongoose.Schema.Types.Array,
-        transporterId:mongoose.Types.ObjectId,
         companyId:mongoose.Types.ObjectId,
         price:mongoose.Schema.Types.Number,
         salePrice:mongoose.Schema.Types.Number,
         payed:mongoose.Schema.Types.Number,
         remain:mongoose.Schema.Types.Number,
         employeeId:mongoose.Types.ObjectId,
+        notes:mongoose.Schema.Types.String,
+        status: mongoose.Schema.Types.String
     });
     const tickets=mongoose.models.tickets ||  mongoose.model('tickets',TicketSchema);
     return tickets;
